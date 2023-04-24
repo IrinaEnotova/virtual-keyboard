@@ -74,6 +74,27 @@ h1 {
   box-shadow: -2px -2px 4px rgb(63, 63, 63) , 2px 2px 4px black;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.control {
+  background-color: rgb(63, 63, 63);
+  width: fit-content;
+}
+
+.backspace {
+  padding: 0 10px;
+}
+
+.keyboard--key:hover {
+  background-color: #306dba;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+}
+
+.keyboard--key:active {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
 }
 
 .description {
