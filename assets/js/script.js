@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // first row
-  new KeySymbol(0, 'Backquote', 'ё', 'Ё', '\`', '~').render();
+  new KeySymbol(0, 'Backquote', 'ё', 'Ё', '`', '~').render();
   new KeyDigit(0, 1, '1', '!', '1', '!').render();
   new KeyDigit(0, 2, '2', '"', '2', '@').render();
   new KeyDigit(0, 3, '3', '№', '3', '#').render();
@@ -208,4 +208,21 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeySymbol(2, 'Semicolon', 'ж', 'Ж', ';', ':').render();
   new KeySymbol(2, 'Quote', 'э', 'Э', '\'', '"').render();
   new KeyControl(2, 'Enter').render();
+
+  // fourth row
+  new KeyControl(3, 'Shift').render();
+  new Key(3, 'Z', 'я', 'Я', 'z', 'Z').render();
+  new Key(3, 'X', 'ч', 'Ч', 'x', 'X').render();
+  new Key(3, 'C', 'с', 'С', 'c', 'C').render();
+  new Key(3, 'V', 'м', 'М', 'v', 'V').render();
+  new Key(3, 'B', 'и', 'И', 'b', 'B').render();
+  new Key(3, 'N', 'т', 'Т', 'n', 'N').render();
+  new Key(3, 'M', 'ь', 'Ь', 'm', 'M').render();
+  new KeySymbol(3, 'Comma', 'б', 'Б', ',', '<').render();
+  new KeySymbol(3, 'Period', 'ю', 'Ю', '.', '>').render();
+  new Symbol(3, 'Slash', '.', ',', '/', '?').render();
+  new KeyControl(3, 'Shift').render();
+
+  // fifth row
+  
 });
