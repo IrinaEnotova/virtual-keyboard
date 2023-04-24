@@ -94,6 +94,14 @@ h1 {
   width: 50px;
 }
 
+.capslock {
+  padding: 0 23px;
+}
+
+.enter {
+  padding: 0 32px;
+}
+
 .keyboard--key:hover {
   background-color: #306dba;
   box-shadow: -2px -2px 4px rgb(63, 63, 63);

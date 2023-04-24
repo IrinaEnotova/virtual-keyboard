@@ -193,4 +193,19 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeySymbol(1, 'BraketRight', 'ъ', 'Ъ', ']', '}').render();
   new Symbol(1, 'Backslash', '\\', '/', '\\', '|').render();
   new KeyControl(1, 'Del').render();
+
+  // third row
+  new KeyControl(2, 'CapsLock').render();
+  new Key(2, 'A', 'ф', 'Ф', 'a', 'A').render();
+  new Key(2, 'S', 'ы', 'Ы', 's', 'S').render();
+  new Key(2, 'D', 'в', 'В', 'd', 'D').render();
+  new Key(2, 'F', 'а', 'А', 'f', 'F').render();
+  new Key(2, 'G', 'п', 'П', 'g', 'G').render();
+  new Key(2, 'H', 'р', 'Р', 'h', 'H').render();
+  new Key(2, 'J', 'о', 'О', 'j', 'J').render();
+  new Key(2, 'K', 'л', 'Л', 'k', 'K').render();
+  new Key(2, 'L', 'д', 'Д', 'l', 'L').render();
+  new KeySymbol(2, 'Semicolon', 'ж', 'Ж', ';', ':').render();
+  new KeySymbol(2, 'Quote', 'э', 'Э', '\'', '"').render();
+  new KeyControl(2, 'Enter').render();
 });
