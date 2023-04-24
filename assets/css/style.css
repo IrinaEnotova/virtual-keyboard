@@ -29,7 +29,7 @@ h1 {
 .textarea {
   display: block;
   text-align: justify;
-  min-width: 60%;
+  min-width: 66%;
   min-height: 20%;
   margin: 0 auto 15px auto;
   padding: 10px;
@@ -41,7 +41,7 @@ h1 {
 }
 
 .keyboard {
-  max-width: 60%;
+  max-width: fit-content;
   min-height: fit-content;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -84,6 +84,14 @@ h1 {
 
 .backspace {
   padding: 0 10px;
+}
+
+.tab {
+  padding: 0 15px;
+}
+
+.del {
+  width: 50px;
 }
 
 .keyboard--key:hover {

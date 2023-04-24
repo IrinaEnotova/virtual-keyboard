@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     render() {
       const element = document.createElement('div');
-      element.className = `keyboard--key key ${this.keyName}`;
+      element.className = `keyboard--key key Key${this.keyName}`;
       element.innerHTML = `
       <span class="rus hidden">
         <span class="caseDown hidden">${this.rusDown}</span>
@@ -78,6 +78,28 @@ window.addEventListener('DOMContentLoaded', () => {
         <span class="caseUp hidden">${this.rusUp}</span>
         <span class="caps hidden">${this.rusUp}</span>
         <span class="shiftCaps hidden">${this.rusDown}</span>
+      </span>
+      <span class="eng">
+        <span class="caseDown">${this.engDown}</span>
+        <span class="caseUp hidden">${this.engUp}</span>
+        <span class="caps hidden">${this.engDown}</span>
+        <span class="shiftCaps hidden">${this.engUp}</span>
+      </span>
+      `;
+      keyboardRows[this.numRow].append(element);
+    }
+  }
+
+  class Symbol extends Key {
+    render() {
+      const element = document.createElement('div');
+      element.className = `keyboard--key key ${this.keyName}`;
+      element.innerHTML = `
+      <span class="rus hidden">
+        <span class="caseDown hidden">${this.rusDown}</span>
+        <span class="caseUp hidden">${this.rusUp}</span>
+        <span class="caps hidden">${this.rusDown}</span>
+        <span class="shiftCaps hidden">${this.rusUp}</span>
       </span>
       <span class="eng">
         <span class="caseDown">${this.engDown}</span>
@@ -154,5 +176,21 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeyDigit(0, 'Equal', '=', '+', '=', '+').render();
   new KeyControl(0, 'Backspace').render();
 
-
+  // second row
+  new KeyControl(1, 'Tab').render();
+  new Key(1, 'Q', 'й', 'Й', 'q', 'Q').render();
+  new Key(1, 'W', 'ц', 'Ц', 'w', 'W').render();
+  new Key(1, 'E', 'у', 'У', 'e', 'E').render();
+  new Key(1, 'R', 'к', 'К', 'r', 'R').render();
+  new Key(1, 'T', 'е', 'Е', 't', 'T').render();
+  new Key(1, 'Y', 'н', 'Н', 'y', 'Y').render();
+  new Key(1, 'U', 'г', 'Г', 'u', 'U').render();
+  new Key(1, 'I', 'ш', 'Ш', 'i', 'I').render();
+  new Key(1, 'O', 'щ', 'Щ', 'o', 'O').render();
+  new Key(1, 'P', 'з', 'З', 'p', 'P').render();
+  new Key(1, '', 'ц', 'Ц', 'w', 'W').render();
+  new KeySymbol(1, 'BraketLeft', 'х', 'Х', '[', '{').render();
+  new KeySymbol(1, 'BraketRight', 'ъ', 'Ъ', ']', '}').render();
+  new Symbol(1, 'Backslash', '\\', '/', '\\', '|').render();
+  new KeyControl(1, 'Del').render();
 });
