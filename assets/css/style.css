@@ -79,7 +79,6 @@ h1 {
 
 .control {
   background-color: rgb(63, 63, 63);
-  width: fit-content;
 }
 
 .backspace {
@@ -95,13 +94,17 @@ h1 {
 }
 
 .capslock,
-.shift:nth-of-type(1) {
+.shiftleft {
   width: 130px;
 }
 
 .enter,
-.shift:not(:first-child) {
+.shiftright {
   width: 110px;
+}
+
+.space {
+  width: 450px;
 }
 
 .keyboard--key:hover {

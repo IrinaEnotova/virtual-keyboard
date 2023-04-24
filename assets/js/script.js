@@ -135,25 +135,26 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   class KeyControl {
-    constructor(numRow, keyName) {
+    constructor(numRow, keyName, engDown) {
       this.numRow = numRow;
       this.keyName = keyName;
+      this.engDown = engDown;
     }
     render() {
       const element = document.createElement('div');
       element.className = `keyboard--key key control ${this.keyName.toLowerCase()}`;
       element.innerHTML = `
       <span class="rus hidden">
-        <span class="caseDown hidden">${this.keyName}</span>
-        <span class="caseUp hidden">${this.keyName}</span>
-        <span class="caps hidden">${this.keyName}</span>
-        <span class="shiftCaps hidden">${this.keyName}</span>
+        <span class="caseDown hidden">${this.engDown}</span>
+        <span class="caseUp hidden">${this.engDown}</span>
+        <span class="caps hidden">${this.engDown}</span>
+        <span class="shiftCaps hidden">${this.engDown}</span>
       </span>
       <span class="eng">
-        <span class="caseDown">${this.keyName}</span>
-        <span class="caseUp hidden">${this.keyName}</span>
-        <span class="caps hidden">${this.keyName}</span>
-        <span class="shiftCaps hidden">${this.keyName}</span>
+        <span class="caseDown">${this.engDown}</span>
+        <span class="caseUp hidden">${this.engDown}</span>
+        <span class="caps hidden">${this.engDown}</span>
+        <span class="shiftCaps hidden">${this.engDown}</span>
       </span>
       `;
       keyboardRows[this.numRow].append(element);
@@ -174,10 +175,10 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeyDigit(0, 0, '0', ')', '0', ')').render();
   new KeyDigit(0, 'Minus', '-', '_', '-', '_').render();
   new KeyDigit(0, 'Equal', '=', '+', '=', '+').render();
-  new KeyControl(0, 'Backspace').render();
+  new KeyControl(0, 'Backspace', 'Backspace').render();
 
   // second row
-  new KeyControl(1, 'Tab').render();
+  new KeyControl(1, 'Tab', 'Tab').render();
   new Key(1, 'Q', 'й', 'Й', 'q', 'Q').render();
   new Key(1, 'W', 'ц', 'Ц', 'w', 'W').render();
   new Key(1, 'E', 'у', 'У', 'e', 'E').render();
@@ -192,10 +193,10 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeySymbol(1, 'BraketLeft', 'х', 'Х', '[', '{').render();
   new KeySymbol(1, 'BraketRight', 'ъ', 'Ъ', ']', '}').render();
   new Symbol(1, 'Backslash', '\\', '/', '\\', '|').render();
-  new KeyControl(1, 'Del').render();
+  new KeyControl(1, 'Del', 'Del').render();
 
   // third row
-  new KeyControl(2, 'CapsLock').render();
+  new KeyControl(2, 'CapsLock', 'CapsLock').render();
   new Key(2, 'A', 'ф', 'Ф', 'a', 'A').render();
   new Key(2, 'S', 'ы', 'Ы', 's', 'S').render();
   new Key(2, 'D', 'в', 'В', 'd', 'D').render();
@@ -207,10 +208,10 @@ window.addEventListener('DOMContentLoaded', () => {
   new Key(2, 'L', 'д', 'Д', 'l', 'L').render();
   new KeySymbol(2, 'Semicolon', 'ж', 'Ж', ';', ':').render();
   new KeySymbol(2, 'Quote', 'э', 'Э', '\'', '"').render();
-  new KeyControl(2, 'Enter').render();
+  new KeyControl(2, 'Enter', 'Enter').render();
 
   // fourth row
-  new KeyControl(3, 'Shift').render();
+  new KeyControl(3, 'ShiftLeft', 'Shift').render();
   new Key(3, 'Z', 'я', 'Я', 'z', 'Z').render();
   new Key(3, 'X', 'ч', 'Ч', 'x', 'X').render();
   new Key(3, 'C', 'с', 'С', 'c', 'C').render();
@@ -221,8 +222,17 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeySymbol(3, 'Comma', 'б', 'Б', ',', '<').render();
   new KeySymbol(3, 'Period', 'ю', 'Ю', '.', '>').render();
   new Symbol(3, 'Slash', '.', ',', '/', '?').render();
-  new KeyControl(3, 'Shift').render();
+  new KeyControl(3, 'ArrowUp', '▲').render();
+  new KeyControl(3, 'ShiftRight', 'Shift').render();
 
   // fifth row
-  
+  new KeyControl(4, 'CtrlRight', 'Ctrl').render();
+  new KeyControl(4, 'Win', 'Win').render();
+  new KeyControl(4, 'Alt', 'Alt').render();
+  new KeyControl(4, 'Space', ' ').render();
+  new KeyControl(4, 'Alt', 'Alt').render();
+  new KeyControl(4, 'ArrowLeft', '◄').render();
+  new KeyControl(4, 'ArrowDown', '▼').render();
+  new KeyControl(4, 'ArrowRight', '►').render();
+  new KeyControl(4, 'CtrlLeft', 'Ctrl').render();
 });
