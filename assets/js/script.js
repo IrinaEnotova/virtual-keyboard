@@ -28,6 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
   addElementToWrapper(heading, 'heading');
   heading.textContent = 'Virtual keyboard';
   addElementToWrapper(textarea, 'textarea');
+  textarea.placeholder = 'Введите текст'
   addElementToWrapper(keyboard, 'keyboard');
   addElementToWrapper(description, 'description');
   description.textContent = 'Клавиатура создана в операционной системе Windows';
@@ -189,7 +190,6 @@ window.addEventListener('DOMContentLoaded', () => {
   new Key(1, 'I', 'ш', 'Ш', 'i', 'I').render();
   new Key(1, 'O', 'щ', 'Щ', 'o', 'O').render();
   new Key(1, 'P', 'з', 'З', 'p', 'P').render();
-  new Key(1, '', 'ц', 'Ц', 'w', 'W').render();
   new KeySymbol(1, 'BraketLeft', 'х', 'Х', '[', '{').render();
   new KeySymbol(1, 'BraketRight', 'ъ', 'Ъ', ']', '}').render();
   new Symbol(1, 'Backslash', '\\', '/', '\\', '|').render();
@@ -235,4 +235,38 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeyControl(4, 'ArrowDown', '▼').render();
   new KeyControl(4, 'ArrowRight', '►').render();
   new KeyControl(4, 'CtrlLeft', 'Ctrl').render();
-});
+
+  const keys = document.querySelectorAll('.key');
+  
+  keys.forEach((key) => {
+    key.addEventListener('click', () => {
+      const keysVar = key.querySelectorAll('span span');
+      keysVar.forEach((span) => {
+        if(!span.classList.contains('hidden')) {
+          textarea.value += span.textContent;
+        }
+      });
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    // console.log(event.key);
+    keys.forEach((key) => {
+      const keysVar = key.querySelectorAll('span span');
+      keysVar.forEach((span) => {
+        let keysValue = [];
+        keysValue.push(span.textContent);
+        if(keysValue.indexOf(event.key) != -1) {
+          key.classList.add('active-key');
+        }
+      });
+    });
+  });
+
+  document.addEventListener('keyup', () => {
+    keys.forEach((key) => {
+      key.classList.remove('active-key');
+    });
+  });
+
+})

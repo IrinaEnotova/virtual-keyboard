@@ -29,7 +29,7 @@ h1 {
 .textarea {
   display: block;
   text-align: justify;
-  min-width: 66%;
+  min-width: 925px;
   min-height: 20%;
   margin: 0 auto 15px auto;
   padding: 10px;
@@ -104,7 +104,7 @@ h1 {
 }
 
 .space {
-  width: 450px;
+  width: 420px;
 }
 
 .keyboard--key:hover {
@@ -113,6 +113,12 @@ h1 {
 }
 
 .keyboard--key:active {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
+}
+
+.active-key {
   background-color: #9dc4f3;
   box-shadow: -2px -2px 4px rgb(63, 63, 63);
   border-radius: 50%;
