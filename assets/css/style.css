@@ -98,6 +98,12 @@ h1 {
   width: 130px;
 }
 
+.active-caps {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
+}
+
 .enter,
 .shiftright {
   width: 110px;

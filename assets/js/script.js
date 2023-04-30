@@ -28,7 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
   addElementToWrapper(heading, 'heading');
   heading.textContent = 'Virtual keyboard';
   addElementToWrapper(textarea, 'textarea');
-  textarea.placeholder = 'Введите текст'
+  textarea.placeholder = 'Введите текст';
+  // textarea.focus();
   addElementToWrapper(keyboard, 'keyboard');
   addElementToWrapper(description, 'description');
   description.textContent = 'Клавиатура создана в операционной системе Windows';
@@ -143,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     render() {
       const element = document.createElement('div');
-      element.className = `keyboard--key key control ${this.keyName.toLowerCase()}`;
+      element.className = `keyboard--key control ${this.keyName.toLowerCase()}`;
       element.innerHTML = `
       <span class="rus hidden">
         <span class="caseDown hidden">${this.engDown}</span>
@@ -250,8 +251,8 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', (event) => {
-    // console.log(event.key);
     keys.forEach((key) => {
+      textarea.focus();
       const keysVar = key.querySelectorAll('span span');
       keysVar.forEach((span) => {
         let keysValue = [];
@@ -268,5 +269,61 @@ window.addEventListener('DOMContentLoaded', () => {
       key.classList.remove('active-key');
     });
   });
+
+  let langStr;
+
+  document.addEventListener("keydown", function(event) {
+    // CAPSLOCK
+    if(event.key === 'CapsLock') {
+      applyCaps();
+    }
+
+    // CTRL + ALT
+    if(event.ctrlKey) {
+      langStr = 'ctrl';
+    }
+    if(event.altKey && langStr) {
+      keys.forEach((key) => {
+        const keyLangVar = key.children;
+        if(!keyLangVar[0].classList.contains('hidden')) {
+          keyLangVar[0].classList.add('hidden');
+          for(let k = 0; k < keyLangVar[0].children.length; k++) {
+            keyLangVar[0].children[k].classList.add('hidden');
+          }
+          keyLangVar[1].children[0].classList.remove('hidden');
+          keyLangVar[1].classList.remove('hidden');
+        } else {
+          keyLangVar[1].classList.add('hidden');
+          for(let k = 0; k < keyLangVar[1].children.length; k++) {
+            keyLangVar[1].children[k].classList.add('hidden');
+          }
+          keyLangVar[0].children[0].classList.remove('hidden');
+          keyLangVar[0].classList.remove('hidden');
+        }
+      })
+    }
+  });
+
+
+  function applyCaps() {
+    keys.forEach((key) => {
+      for(let j = 0; j < key.children.length; j++) {
+        if(!key.children[j].classList.contains('hidden')) {
+          for(let s = 0; s < key.children[j].children.length; s++) {
+            if(key.children[j].children[s].classList.contains('caseDown')) {
+              key.children[j].children[s].classList.toggle('hidden');
+              document.querySelector('.capslock').classList.toggle('active-caps');
+            } 
+            if(key.children[j].children[s].classList.contains('caps')) {
+              key.children[j].children[s].classList.toggle('hidden');
+              // document.querySelector('.capslock').classList.add('active-caps');
+            } 
+          }
+        }
+      }
+    })
+  }
+
+  document.querySelector('.capslock').addEventListener('click', applyCaps);
 
 })
