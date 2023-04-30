@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     render() {
       const element = document.createElement('div');
-      element.className = `keyboard--key control ${this.keyName.toLowerCase()}`;
+      element.className = `keyboard--key controls ${this.keyName.toLowerCase()}`;
       element.innerHTML = `
       <span class="rus hidden">
         <span class="caseDown hidden">${this.engDown}</span>
@@ -238,6 +238,7 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeyControl(4, 'CtrlLeft', 'Ctrl').render();
 
   const keys = document.querySelectorAll('.key');
+  const controls = document.querySelectorAll('.controls');
   
   keys.forEach((key) => {
     key.addEventListener('click', () => {
@@ -262,17 +263,42 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+
+    controls.forEach((control) => {
+      textarea.focus();
+      if(control.classList.contains(event.code.toLowerCase())) {
+        if(event.key !== 'CapsLock') {
+          control.classList.add('active-key');
+        }
+      }
+    });
   });
 
-  document.addEventListener('keyup', () => {
+  document.addEventListener('keyup', (event) => {
     keys.forEach((key) => {
       key.classList.remove('active-key');
+    });
+    controls.forEach((control) => {
+      if(event.code !== 'CapsLock') {
+        control.classList.remove('active-key');
+      }
     });
   });
 
   let langStr;
 
   document.addEventListener("keydown", function(event) {
+    // console.log(event);
+    // TAB
+    if(event.key === 'Tab') {
+      event.preventDefault();
+      textarea.value += '    ';
+    }
+
+    // WIN
+    if(event.key === 'Meta') {
+      document.querySelector('.win').classList.add('active-key');
+    }
     // CAPSLOCK
     if(event.key === 'CapsLock') {
       applyCaps();
@@ -300,10 +326,11 @@ window.addEventListener('DOMContentLoaded', () => {
           keyLangVar[0].children[0].classList.remove('hidden');
           keyLangVar[0].classList.remove('hidden');
         }
+
+        langStr = null;
       })
     }
   });
-
 
   function applyCaps() {
     keys.forEach((key) => {
@@ -312,11 +339,10 @@ window.addEventListener('DOMContentLoaded', () => {
           for(let s = 0; s < key.children[j].children.length; s++) {
             if(key.children[j].children[s].classList.contains('caseDown')) {
               key.children[j].children[s].classList.toggle('hidden');
-              document.querySelector('.capslock').classList.toggle('active-caps');
+              document.querySelector('.capslock').classList.toggle('active-key');
             } 
             if(key.children[j].children[s].classList.contains('caps')) {
               key.children[j].children[s].classList.toggle('hidden');
-              // document.querySelector('.capslock').classList.add('active-caps');
             } 
           }
         }
@@ -324,6 +350,10 @@ window.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  document.querySelector('.tab').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += '    ';
+  })
   document.querySelector('.capslock').addEventListener('click', applyCaps);
-
+  
 })
