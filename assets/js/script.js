@@ -257,24 +257,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-
-  function applyShift() {
-    keys.forEach((key) => {
-      for(let j = 0; j < key.children.length; j++) {
-        if(!key.children[j].classList.contains('hidden')) {
-          for(let s = 0; s < key.children[j].children.length; s++) {
-            if(key.children[j].children[s].classList.contains('caseDown')) {
-              key.children[j].children[s].classList.toggle('hidden');
-              document.querySelector('.shiftleft').classList.add('active-key');
-            } 
-            if(key.children[j].children[s].classList.contains('caseUp')) {
-              key.children[j].children[s].classList.toggle('hidden');
-            } 
-          }
-        }
-      }
-    })
-  }
   
   keys.forEach((key) => {
     key.addEventListener('click', () => {
@@ -328,11 +310,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // CAPSLOCK
     if(event.key === 'CapsLock') {
       applyCaps();
-    }
-
-    // SHIFT
-    if(event.key === 'Shift') {
-      applyShift();
     }
 
     // ALT
@@ -421,6 +398,11 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.arrowright').addEventListener('click', () => {
     textarea.focus();
     textarea.value += '►';
-  })
-
+  });
+  document.querySelector('.enter').addEventListener('click', () => {
+    textarea.value += '\n';
+  });
+  document.querySelector('.backspace').addEventListener('click', () => {
+    textarea.value = textarea.value.slice(0, -1);
+  });
 })
