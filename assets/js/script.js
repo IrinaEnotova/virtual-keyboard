@@ -227,25 +227,62 @@ window.addEventListener('DOMContentLoaded', () => {
   new KeyControl(3, 'ShiftRight', 'Shift').render();
 
   // fifth row
-  new KeyControl(4, 'CtrlRight', 'Ctrl').render();
+  new KeyControl(4, 'ControlLeft', 'Ctrl').render();
   new KeyControl(4, 'Win', 'Win').render();
-  new KeyControl(4, 'Alt', 'Alt').render();
+  new KeyControl(4, 'AltLeft', 'Alt').render();
   new KeyControl(4, 'Space', ' ').render();
-  new KeyControl(4, 'Alt', 'Alt').render();
+  new KeyControl(4, 'AltRight', 'Alt').render();
   new KeyControl(4, 'ArrowLeft', '◄').render();
   new KeyControl(4, 'ArrowDown', '▼').render();
   new KeyControl(4, 'ArrowRight', '►').render();
-  new KeyControl(4, 'CtrlLeft', 'Ctrl').render();
+  new KeyControl(4, 'ControlRight', 'Ctrl').render();
 
   const keys = document.querySelectorAll('.key');
   const controls = document.querySelectorAll('.controls');
+
+  function applyCaps() {
+    keys.forEach((key) => {
+      for(let j = 0; j < key.children.length; j++) {
+        if(!key.children[j].classList.contains('hidden')) {
+          for(let s = 0; s < key.children[j].children.length; s++) {
+            if(key.children[j].children[s].classList.contains('caseDown')) {
+              key.children[j].children[s].classList.toggle('hidden');
+              document.querySelector('.capslock').classList.toggle('active-key');
+            } 
+            if(key.children[j].children[s].classList.contains('caps')) {
+              key.children[j].children[s].classList.toggle('hidden');
+            } 
+          }
+        }
+      }
+    })
+  }
+
+  function applyShift() {
+    keys.forEach((key) => {
+      for(let j = 0; j < key.children.length; j++) {
+        if(!key.children[j].classList.contains('hidden')) {
+          for(let s = 0; s < key.children[j].children.length; s++) {
+            if(key.children[j].children[s].classList.contains('caseDown')) {
+              key.children[j].children[s].classList.toggle('hidden');
+              document.querySelector('.shiftleft').classList.add('active-key');
+            } 
+            if(key.children[j].children[s].classList.contains('caseUp')) {
+              key.children[j].children[s].classList.toggle('hidden');
+            } 
+          }
+        }
+      }
+    })
+  }
   
   keys.forEach((key) => {
     key.addEventListener('click', () => {
+      textarea.focus();
       const keysVar = key.querySelectorAll('span span');
       keysVar.forEach((span) => {
         if(!span.classList.contains('hidden')) {
-          textarea.value += span.textContent;
+          textarea.value = textarea.value.slice(0, textarea.selectionStart) + span.textContent + textarea.value.slice(textarea.selectionEnd);
         }
       });
     });
@@ -274,21 +311,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.addEventListener('keyup', (event) => {
-    keys.forEach((key) => {
-      key.classList.remove('active-key');
-    });
-    controls.forEach((control) => {
-      if(event.code !== 'CapsLock') {
-        control.classList.remove('active-key');
-      }
-    });
-  });
-
   let langStr;
 
   document.addEventListener("keydown", function(event) {
-    // console.log(event);
+    console.log(event);
     // TAB
     if(event.key === 'Tab') {
       event.preventDefault();
@@ -302,6 +328,33 @@ window.addEventListener('DOMContentLoaded', () => {
     // CAPSLOCK
     if(event.key === 'CapsLock') {
       applyCaps();
+    }
+
+    // SHIFT
+    if(event.key === 'Shift') {
+      applyShift();
+    }
+
+    // ALT
+    if(event.key === 'Alt') {
+      event.preventDefault();
+    }
+
+    // ARROWS
+    if(event.key === 'ArrowUp') {
+      textarea.value += '▲';
+    }
+
+    if(event.key === 'ArrowLeft') {
+      textarea.value += '◄';
+    }
+
+    if(event.key === 'ArrowDown') {
+      textarea.value += '▼';
+    }
+
+    if(event.key === 'ArrowRight') {
+      textarea.value += '►';
     }
 
     // CTRL + ALT
@@ -332,28 +385,42 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  function applyCaps() {
+  document.addEventListener('keyup', (event) => {
     keys.forEach((key) => {
-      for(let j = 0; j < key.children.length; j++) {
-        if(!key.children[j].classList.contains('hidden')) {
-          for(let s = 0; s < key.children[j].children.length; s++) {
-            if(key.children[j].children[s].classList.contains('caseDown')) {
-              key.children[j].children[s].classList.toggle('hidden');
-              document.querySelector('.capslock').classList.toggle('active-key');
-            } 
-            if(key.children[j].children[s].classList.contains('caps')) {
-              key.children[j].children[s].classList.toggle('hidden');
-            } 
-          }
-        }
+      key.classList.remove('active-key');
+    });
+    controls.forEach((control) => {
+      if(event.code !== 'CapsLock') {
+        control.classList.remove('active-key');
       }
-    })
-  }
+    });
+    
+  });
 
   document.querySelector('.tab').addEventListener('click', () => {
     textarea.focus();
     textarea.value += '    ';
   })
   document.querySelector('.capslock').addEventListener('click', applyCaps);
-  
+  document.querySelector('.space').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += ' ';
+  });
+  document.querySelector('.arrowup').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += '▲';
+  });
+  document.querySelector('.arrowleft').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += '◄';
+  });
+  document.querySelector('.arrowdown').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += '▼';
+  });
+  document.querySelector('.arrowright').addEventListener('click', () => {
+    textarea.focus();
+    textarea.value += '►';
+  })
+
 })
