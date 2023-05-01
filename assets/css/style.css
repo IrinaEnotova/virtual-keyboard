@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+p,
+h1 {
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrapper {
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: white;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.heading {
+  color: #306dba;
+  text-align: center;
+  padding: 25px 0;
+}
+
+.textarea {
+  display: block;
+  text-align: justify;
+  min-width: 925px;
+  min-height: 20%;
+  margin: 0 auto 15px auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.textarea:focus {
+  outline: 4px solid #306dba;
+}
+
+.keyboard {
+  max-width: fit-content;
+  min-height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: -3px -3px 5px rgb(63, 63, 63) , 3px 3px 5px black;
+  border-radius: 5px;
+}
+
+.keyboard--row {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.keyboard--row:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.keyboard--key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  margin: 0 4px;
+  border: none;
+  background-color: transparent;
+  color:white;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63) , 2px 2px 4px black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.control {
+  background-color: rgb(63, 63, 63);
+}
+
+.backspace {
+  width: 120px;
+}
+
+.tab {
+  width: 65px;
+}
+
+.del {
+  width: 50px;
+}
+
+.capslock,
+.shiftleft {
+  width: 130px;
+}
+
+.active-control {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
+}
+
+.enter,
+.shiftright {
+  width: 110px;
+}
+
+.space {
+  width: 420px;
+}
+
+.keyboard--key:hover {
+  background-color: #306dba;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+}
+
+.keyboard--key:active {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
+}
+
+.active-key {
+  background-color: #9dc4f3;
+  box-shadow: -2px -2px 4px rgb(63, 63, 63);
+  border-radius: 50%;
+}
+
+.description {
+  text-align: center;
+}
